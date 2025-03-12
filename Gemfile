@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 gem "cssbundling-rails" # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "devise"
 gem "dry-monads"
 gem "dry-rails", github: "dry-rb/dry-rails"
 gem "dry-struct"
