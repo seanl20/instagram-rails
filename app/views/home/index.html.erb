@@ -1,3 +1,7 @@
+<% if user_signed_in? %>
+  <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": "delete" } %>
+<% end %>
+
 <div class="d-flex justify-content-center align-items-center vh-100">
   <div>
     <div class="card p-4 mb-3" style="width: 28rem;">
@@ -7,7 +11,7 @@
         <div class="d-flex justify-content-center">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "w-100"}) do |f| %>
             <div class="mb-3">
-              <%= f.email_field :email, placeholder: "Phone number, username or email", autofocus: true, autocomplete: "email", class: "form-control" %>
+              <%= f.text_field :login, placeholder: "Username or email", autofocus: true, class: "form-control" %>
             </div>
 
             <div class="mb-3">
