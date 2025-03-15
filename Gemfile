@@ -6,6 +6,7 @@ gem "devise"
 gem "dry-monads"
 gem "dry-rails", github: "dry-rb/dry-rails"
 gem "dry-struct"
+gem "image_processing", "~> 1.2" # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jsbundling-rails" # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "pg", "~> 1.1" # Use postgresql as the database for Active Record
@@ -23,9 +24,6 @@ gem "tzinfo-data", platforms: %i[ windows jruby ] # Windows does not include zon
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem "brakeman", require: false # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
