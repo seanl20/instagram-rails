@@ -29,16 +29,15 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header justify-content-center">
+        <p class="modal-title text-center fs-6 fw-semibold" id="exampleModalLabel">Create new post</p>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <div class="py-5" style="margin-left: auto; margin-right: auto; text-align: center;">
+          <%= image_tag "gallery.png", width: 96, class: "mb-3" %>
+          <p class="fs-5">Drag photos and videos here</p>
+          <%= link_to "Select from computer", "", class: "btn btn-primary insta-primary" %>
+        </div>
       </div>
     </div>
   </div>
