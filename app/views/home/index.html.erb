@@ -7,7 +7,7 @@
         <% end %>
       </div>
       <div class="mb-4">
-        <%= link_to "", data: { "bs-toggle": "modal", "bs-target": "#exampleModal"}, class: "sidebar-link" do %>
+        <%= link_to "", data: { "bs-toggle": "modal", "bs-target": "#new-post-modal"}, class: "sidebar-link" do %>
           <div class="d-flex align-items-center">
             <%= image_tag "icons/create.png", width: 24 %>
             <span class="ms-3">Create</span>
@@ -26,17 +26,21 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="new-post-modal" tabindex="-1" aria-labelledby="new-post-modal-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header justify-content-center">
-        <p class="modal-title text-center fs-6 fw-semibold" id="exampleModalLabel">Create new post</p>
+        <p class="modal-title text-center fs-6 fw-semibold" id="new-post-modal-label">Create new post</p>
       </div>
       <div class="modal-body d-flex justify-content-center align-items-center">
         <div class="py-5" style="margin-left: auto; margin-right: auto; text-align: center;">
           <%= image_tag "gallery.png", width: 96, class: "mb-3" %>
           <p class="fs-5">Drag photos and videos here</p>
-          <%= link_to "Select from computer", "", class: "btn btn-primary insta-primary" %>
+
+          <%= form_with model: Post.new, data: { controller: "new-post-form" } do |f| %>
+            <%= link_to "Select from computer", "", data: { action: "click->new-post-form#selectFile" }, id: "post-select-file-button", class: "btn btn-primary insta-primary" %>
+            <%= f.file_field :photo, data: { "new-post-form-target": "photoFile", action: "change->new-post-form#submitForm" }, class: "d-none" %>
+          <% end %>
         </div>
       </div>
     </div>
