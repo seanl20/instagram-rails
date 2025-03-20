@@ -37,9 +37,11 @@
           <%= image_tag "gallery.png", width: 96, class: "mb-3" %>
           <p class="fs-5">Drag photos and videos here</p>
 
-          <%= form_with model: Post.new, data: { controller: "new-post-form" } do |f| %>
-            <%= link_to "Select from computer", "", data: { action: "click->new-post-form#selectFile" }, id: "post-select-file-button", class: "btn btn-primary insta-primary" %>
-            <%= f.file_field :photo, data: { "new-post-form-target": "photoFile", action: "change->new-post-form#submitForm" }, class: "d-none" %>
+          <%= form_with model: Post.new, url: posts_path, id: "post-form", local: true, multipart: true, data: { controller: "new-post-form" } do |f| %>
+            <label class= "btn btn-primary insta-primary">
+              <%= f.file_field :photo, data: { "new-post-form-target": "photoFile" }, class: "d-none" %>
+              Select from computer
+            </label>
           <% end %>
         </div>
       </div>
