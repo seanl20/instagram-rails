@@ -20,6 +20,7 @@
     </div>
   </div>
   <div class="col-7">
+    <%= image_tag Post.first.photo.variant(resize_to_limit: [1000, 1000]), data: { controller: "photo-cropper" } %>
   </div>
   <div class="col-3">
   </div>

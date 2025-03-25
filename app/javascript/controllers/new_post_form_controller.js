@@ -9,10 +9,4 @@ export default class extends Controller {
       document.getElementById('post-form').submit();
     });
   }
-
-  selectFile(e){
-    e.preventDefault;
-    this.photoFileTarget.click();
-    console.log('Test00');
-  }
 }
