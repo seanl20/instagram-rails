@@ -35,4 +35,26 @@ RSpec.describe Repositories::PostRepo do
       end
     end
   end
+
+  describe "#get" do
+    subject(:get) { described_class.new.get(id:) }
+
+    context "post exists" do
+      let!(:user) { FactoryBot.create(:user) }
+      let!(:post) { FactoryBot.create(:post, user:) }
+      let!(:id) { post.id }
+
+      it "creates post" do
+        expect(get).to eq(post)
+      end
+    end
+
+    context "post does not exists" do
+      let!(:id) { nil }
+
+      it "return record invalid" do
+        expect { get }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end
