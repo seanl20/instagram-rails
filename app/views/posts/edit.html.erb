@@ -1,3 +1,11 @@
-<%= image_tag @post.photo.variant(resize_to_limit: [1000, 1000]), data: { controller: "photo-cropper" } %>
+<div>
+  <h3>Crop Picture</h3>
 
-<%= form_with model: @post %>
+  <div class="mb-3">
+    <%= image_tag @post.photo.variant(resize_to_limit: [1000, 1000]), data: { controller: "photo-cropper" } %>
+  </div>
+
+  <%= form_with model: @post, url: edit_post_path(@post) do |f| %>
+    <%= f.submit "Crop picture", class: "btn btn-primary insta-primary" %>
+  <% end %>
+</div>
