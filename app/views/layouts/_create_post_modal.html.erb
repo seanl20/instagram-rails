@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade" id="new-post-modal" tabindex="-1" aria-labelledby="new-post-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <p class="modal-title text-center fs-6 fw-semibold" id="new-post-modal-label">Create new post</p>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <div class="py-5" style="margin-left: auto; margin-right: auto; text-align: center;">
+          <%= image_tag "gallery.png", width: 96, class: "mb-3" %>
+          <p class="fs-5">Drag photos and videos here</p>
+
+          <%= form_with model: Post.new, url: posts_path, id: "post-form", local: true, multipart: true, data: { controller: "new-post-form" } do |f| %>
+            <label class= "btn btn-primary insta-primary">
+              <%= f.file_field :photo, data: { "new-post-form-target": "photoFile" }, class: "d-none" %>
+              Select from computer
+            </label>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

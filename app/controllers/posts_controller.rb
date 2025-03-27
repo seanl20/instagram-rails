@@ -2,12 +2,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    puts "params.inspect"
-    puts params.inspect
-    puts "params.inspect"
     @post = Posts::Commands::Create.new.call(params: post_params, user: current_user)
 
-    redirect_to root_path
+    redirect_to edit_post_path(@post)
+  end
+
+  def edit
+    @post = Posts::Queries::Get.new.call(id: params[:id])
   end
 
   private

@@ -5,11 +5,21 @@ import Cropper from 'cropperjs';
 export default class extends Controller {
   connect() {
     console.log('Test from photo-cropper');
-    console.log('Cropper: ', Cropper);
 
     const image = this.element;
 
-    const cropper = new Cropper(image);
-    console.log('Cropper: ', cropper);
+    const cropper = new Cropper(image, {
+      aspectRatio: 16 / 9,
+      crop(event) {
+        console.log(event.detail.x);
+        console.log(event.detail.y);
+        console.log(event.detail.width);
+        console.log(event.detail.height);
+        console.log(event.detail.rotate);
+        console.log(event.detail.scaleX);
+        console.log(event.detail.scaleY);
+      },
+    });
+    console.log('cropper: ', cropper);
   }
 }
