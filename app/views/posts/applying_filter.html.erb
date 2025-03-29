@@ -1,3 +1,7 @@
-<div class="py-5">
+<div class="py-5" data-controller="apply-filter">
   <h3>Applying Frilter</h3>
+
+  <% Constants::Post::PHOTO_FILTER.each do |filter| %>
+    <%= image_tag @post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS, crop: [@post.x_offset, @post.y_offset.to_i, @post.width.to_i, @post.height.to_i]), class: "mb-5", data: { "apply-filter-target": "image", "filter": filter } %>
+  <% end %>
 </div>

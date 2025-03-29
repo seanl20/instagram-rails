@@ -13,20 +13,25 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= favicon_link_tag asset_path("instagram.png") %>
+    <script src="https://cdn.jsdelivr.net/gh/silvia-odwyer/pixels.js/dist/Pixels.js"></script>
   </head>
 
   <body>
-    <div class="row">
-      <div class="col">
-        <%= render "layouts/nav_sidebar" %>
+    <% if user_signed_in? %>
+      <div class="row">
+        <div class="col">
+          <%= render "layouts/nav_sidebar" %>
+        </div>
+        <div class="col-7">
+          <%= yield %>
+        </div>
+        <div class="col-3">
+        </div>
       </div>
-      <div class="col-7">
-        <%= yield %>
-      </div>
-      <div class="col-3">
-      </div>
-    </div>
 
-    <%= render "layouts/create_post_modal" %>
+      <%= render "layouts/create_post_modal" %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
