@@ -57,4 +57,52 @@ RSpec.describe Repositories::PostRepo do
       end
     end
   end
+
+  describe "#update" do
+    subject(:update) { described_class.new.update(id:, attrs:) }
+
+    context "post exists" do
+      let!(:user) { FactoryBot.create(:user) }
+      let!(:post) { FactoryBot.create(:post, user:) }
+      let!(:id) { post.id }
+
+      context "when valid attrs are passed" do
+        let(:attrs) do
+          {
+            x_offset: 200,
+            y_offset: 200,
+            width: 400,
+            height: 400
+          }
+        end
+
+        it "updates post" do
+          update
+          expect(post.reload.x_offset).to eq(200)
+          expect(post.reload.y_offset).to eq(200)
+          expect(post.reload.width).to eq(400)
+          expect(post.reload.height).to eq(400)
+        end
+      end
+    end
+
+    context "post does not exists" do
+      let!(:id) { 1 }
+
+      context "when valid attrs are passed" do
+        let(:attrs) do
+          {
+            x_offset: 200,
+            y_offset: 200,
+            width: 400,
+            height: 400
+          }
+        end
+
+        it "return record not found" do
+          expect { update }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
+  end
 end
