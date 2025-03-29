@@ -1,0 +1,17 @@
+<div class="py-5" data-controller="photo-cropper">
+  <h3>Crop Picture</h3>
+
+  <div class="mb-3">
+    <%= image_tag @post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS), data: { "photo-cropper-target": "image" }  %>
+  </div>
+
+  <%= form_with model: @post, data: { "photo-cropper-target": "form" } do |f| %>
+    <%= f.hidden_field :x_offset, data: { "photo-cropper-target": "xOffset" } %>
+    <%= f.hidden_field :y_offset, data: { "photo-cropper-target": "yOffset" } %>
+    <%= f.hidden_field :width, data: { "photo-cropper-target": "width" } %>
+    <%= f.hidden_field :height, data: { "photo-cropper-target": "height" } %>
+    <%= f.hidden_field :status, value: "applying_filter" %>
+
+    <%= f.submit "Crop picture", class: "btn btn-primary insta-primary" %>
+  <% end %>
+</div>

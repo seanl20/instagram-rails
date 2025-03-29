@@ -9,11 +9,25 @@ class PostsController < ApplicationController
 
   def edit
     @post = Posts::Queries::Get.new.call(id: params[:id])
+
+    render @post.status
+  end
+
+  def update
+    @post = Posts::Commands::Update.new.call(id: params[:id], params: post_params)
+    redirect_to edit_post_path(@post)
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:photo)
+    params.require(:post).permit(
+      :photo,
+      :x_offset,
+      :y_offset,
+      :width,
+      :height,
+      :status
+    )
   end
 end
