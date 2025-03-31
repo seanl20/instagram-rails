@@ -12,6 +12,8 @@
     </div>
 
     <%= form_with model: @post, data: { "apply-filter-target": "form" } do |f| %>
+      <%= f.hidden_field :filter_name, data: { "apply-filter-target": "filterName" } %>
+      <%= f.hidden_field :status, value: "final_draft" %>
       <%= f.submit "Apply filter", class: "btn btn-primary insta-primary" %>
     <% end %>
   </div>
