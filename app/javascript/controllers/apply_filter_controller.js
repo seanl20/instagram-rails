@@ -2,15 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="apply-filter"
 export default class extends Controller {
-  static targets = ['image']
+  static targets = ['image', 'hiddenImage', 'form', 'filterButton']
 
   connect() {
     console.log('PixelJS: ', pixelsJS)
+  }
 
-    this.imageTargets.forEach((imageTarget) => {
-      imageTarget.onload = () => {
-        pixelsJS.filterImg(imageTarget, imageTarget.dataset.filter);
-      }
-    });
+  applyFilter(e) {
+    console.log(e.target.dataset.filterName);
+    pixelsJS.filterImg(this.imageTarget, e.target.dataset.filterName);
   }
 }

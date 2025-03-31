@@ -13,7 +13,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= favicon_link_tag asset_path("instagram.png") %>
-    <script src="https://cdn.jsdelivr.net/gh/silvia-odwyer/pixels.js/dist/Pixels.js"></script>
+    <% if controller_name == "posts" && action_name == "edit" && @post.applying_filter? %>
+      <script src="https://cdn.jsdelivr.net/gh/silvia-odwyer/pixels.js/dist/Pixels.js"></script> 
+    <% end %>
   </head>
 
   <body>
