@@ -1,7 +1,18 @@
-<div class="py-5" data-controller="apply-filter">
-  <h3>Applying Frilter</h3>
+<div class="py-5 d-flex justify-content-center align-items-center" data-controller="apply-filter">
+  <div>
+    <h1 class="fs-3">Applying Filters</h1>
 
-  <% Constants::Post::PHOTO_FILTER.each do |filter| %>
-    <%= image_tag @post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS, crop: [@post.x_offset, @post.y_offset.to_i, @post.width.to_i, @post.height.to_i]), class: "mb-5", data: { "apply-filter-target": "image", "filter": filter } %>
-  <% end %>
+    <%= image_tag @post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS, crop: [@post.x_offset, @post.y_offset.to_i, @post.width.to_i, @post.height.to_i]), class: "mb-5 d-none", data: { "apply-filter-target": "hiddenImage" } %>
+    <%= image_tag @post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS, crop: [@post.x_offset, @post.y_offset.to_i, @post.width.to_i, @post.height.to_i]), class: "mb-5", data: { "apply-filter-target": "image" } %>
+
+    <div class="d-flex align-content-around flex-wrap">
+      <% Constants::Post::PHOTO_FILTER.each do |filter| %>
+        <%= button_tag filter, class: "btn btn-primary insta-primary me-2 mb-2", data: { "apply-filter-target": "filterButton", "action": "click->apply-filter#applyFilter", "filter-name": filter }%>
+      <% end %>
+    </div>
+
+    <%= form_with model: @post, data: { "apply-filter-target": "form" } do |f| %>
+      <%= f.submit "Apply filter", class: "btn btn-primary insta-primary" %>
+    <% end %>
+  </div>
 </div>
