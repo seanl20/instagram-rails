@@ -27,7 +27,8 @@ class PostsController < ApplicationController
       :y_offset,
       :width,
       :height,
-      :status
+      :status,
+      :filter_name
     )
   end
 end
