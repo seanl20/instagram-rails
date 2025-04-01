@@ -15,7 +15,14 @@ class PostsController < ApplicationController
 
   def update
     @post = Posts::Commands::Update.new.call(id: params[:id], params: post_params)
-    redirect_to edit_post_path(@post)
+    puts "@post"
+    puts @post.inspect
+    puts "@post"
+    if @post.published?
+      redirect_to root_path
+    else
+      redirect_to edit_post_path(@post)
+    end
   end
 
   private
@@ -28,7 +35,8 @@ class PostsController < ApplicationController
       :width,
       :height,
       :status,
-      :filter_name
+      :filter_name,
+      :description
     )
   end
 end

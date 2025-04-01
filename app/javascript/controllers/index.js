@@ -15,3 +15,6 @@ application.register("new-post-form", NewPostFormController)
 
 import PhotoCropperController from "./photo_cropper_controller"
 application.register("photo-cropper", PhotoCropperController)
+
+import PhotoFilterController from "./photo_filter_controller"
+application.register("photo-filter", PhotoFilterController)
