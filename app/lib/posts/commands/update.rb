@@ -8,7 +8,7 @@ module Posts
 
         update_post(id:, params:, post:)
 
-        post
+        Repositories::PostRepo.new.get(id:)
       end
 
       def update_post(id:, params:, post:)

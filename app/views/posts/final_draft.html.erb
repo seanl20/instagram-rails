@@ -1,5 +1,19 @@
 <div class="py-5 d-flex justify-content-center align-items-center">
   <div>
-    <h1 class="fs-3">Final Draft</h1>
+    <h1 class="fs-3">Adding Description to Post</h1>
+
+    <%= image_tag @post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS, 
+      crop: [@post.x_offset, @post.y_offset.to_i, @post.width.to_i, @post.height.to_i]), 
+      class: "mb-5", 
+      data: { controller: "photo-filter", filter: @post.filter_name } 
+    %>
+
+    <%= form_with model: @post, data: { "apply-filter-target": "form" } do |f| %>
+      <div class="mb-3">
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+      <%= f.hidden_field :status, value: "published" %>
+      <%= f.submit "Apply filter", class: "btn btn-primary insta-primary" %>
+    <% end %>
   </div>
 </div>
