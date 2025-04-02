@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.create(username: "TestUser", email: "test@test.com", password: "password")
+
+3.times do
+  User.create(
+    username: Faker::Internet.username,
+    email: Faker::Internet.email,
+    password: "password"
+  )
+end
+
+other_users = User.where.not(username: "TestUser")
+
+other_users.each_with_index do |u, index|
+  5.times do |i|
+    post = Post.new(filter_name: Constants::Post::PHOTO_FILTER.sample, status: "published", user: u)
+    post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "Stock_photo_#{((index*5) + i) + 1}.jpg")), filename: "Stock_photo_#{((index*5) + i) + 1}.jpg", content_type: "image/jpg")
+    post.save!
+  end
+end
