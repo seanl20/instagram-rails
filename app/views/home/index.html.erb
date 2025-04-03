@@ -1,5 +1,12 @@
-<p>Test From Home</p>
-
-<% Post.find_each do |post| %>
-  <%= image_tag post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS) %>
-<% end %>
+<div class="py-5 d-flex justify-content-center align-items-center">
+  <div style="margin-left: auto; margin-right: auto;">
+    <% Post.includes(:user).find_each do |post| %>
+      <div class="mb-4">
+        <p class="mb-1 fw-semibold" style="font-size: 13px;"><%= post.user.username %></p>
+        <%= image_tag post.photo.variant(resize_to_limit: Constants::Post::RESIZE_DIMENSIONS, crop: [post.x_offset, post.y_offset, post.width, post.height]), data: { controller: "photo-filter", filter: post.filter_name } %>
+        <p class="mb-1" style="font-size: 13px;"><span class="fw-semibold"><%= post.user.username %></span> <%= post.description %></p>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+</div>
